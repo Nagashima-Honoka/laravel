@@ -1,4 +1,3 @@
-<DOCTYPE HTML>
 <html lang="ja">
     <head>
         <meta charset="UTF-8" />
@@ -14,11 +13,10 @@
         <form action="/form.php" method="post">
             <div>
                 First name: <input type = "text" name = "first_name" />
-                <br>
                 Last name: <input type = "text" name = "last_name" />
             </div>
             <div>
-                Description : <br />
+                Description :
                 <textarea rows = "5" cols = "50" name = "description"></textarea>
             </div>
             <div>
