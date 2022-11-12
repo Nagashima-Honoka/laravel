@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sample', 'SampleController@index');
+Route::get('/sample', 'SampleController@index'); // web.php → sample.blade.php, function index
 
 Route::get('/sample/contact', 'SampleController@contact')->name('contact.index');
 
@@ -28,3 +28,9 @@ Route::get('/sample/complete', 'SampleController@complete')->name('contact.compl
 // Route::post('/sample/complete', 'SampleController@complete')->name('contact.complete');
 
 Route::get('/practice/practice', 'PracticeController@practice');
+
+Route::get('/login', 'LoginController@login');
+
+Route::get('/top', 'LoginController@top')->name('top');
+
+Route::get('/logout', 'LoginController@logout')->name('logout');
