@@ -19,6 +19,10 @@ http://localhost:8081
 ```
 php artisan make:controller SampleController
 ```
+## Migration作成
+```
+php artisan make:migration create_テーブル名_table
+```
 
 ## Laravel8
 [https://readouble.com/laravel/8.x/ja/](https://readouble.com/laravel/8.x/ja/)
