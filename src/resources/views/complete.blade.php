@@ -7,10 +7,8 @@
     </head>
     <body>
         <div class="max-w-content mx-auto">
-            <h1>No.1</h1>
-            <p>sample</p>
-            {{ $test }}
-            <p>{{ $test1 }}</p>
+            <h2>Thanks</h2>
+            <img src="/images/heart.png" alt="heart">
         </div>
     </body>
 </html>

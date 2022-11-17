@@ -7,10 +7,9 @@
     </head>
     <body>
         <div class="max-w-content mx-auto">
-            <h1>No.1</h1>
-            <p>sample</p>
-            {{ $test }}
-            <p>{{ $test1 }}</p>
+            <p class="text-4xl font-extrabold text-center text-gray-500 p-10">
+                Log out!
+            </p>
         </div>
     </body>
 </html>

@@ -17,4 +17,13 @@ class SampleController extends Controller
         $contact1 = 'contact1';
         return view('contact', compact('contact', 'contact1' ));
     }
+
+    public function confirm(){
+        return view('confirm');
+    }
+
+    public function complete(){
+        return view('complete');
+    }
+
 }
