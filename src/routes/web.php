@@ -17,15 +17,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sample', 'SampleController@index'); // web.php → sample.blade.php, function index
+Route::get('hello', function () {
+    return view('hello.index'); // フォルダ名.ファイル名
+});
+
+Route::get('/sample', 'SampleController@index'); // sample.blade.php, コントローラー名@アクション名
 
 Route::get('/sample/contact', 'SampleController@contact')->name('contact.index');
 
-Route::get('/sample/confirm', 'SampleController@confirm')->name('contact.confirm');
-// Route::post('/sample/confirm', 'SampleController@confirm')->name('contact.confirm');
+Route::post('/sample/confirm', 'SampleController@confirm')->name('contact.confirm');
 
-Route::get('/sample/complete', 'SampleController@complete')->name('contact.complete');
-// Route::post('/sample/complete', 'SampleController@complete')->name('contact.complete');
+Route::post('/sample/complete', 'SampleController@complete')->name('contact.complete');
 
 Route::get('/practice/practice', 'PracticeController@practice');
 
@@ -34,3 +36,8 @@ Route::get('/login', 'LoginController@login');
 Route::get('/top', 'LoginController@top')->name('top');
 
 Route::get('/logout', 'LoginController@logout')->name('logout');
+
+Route::get('hello', 'HelloController@index');
+Route::post('hello', 'HelloController@post');
+
+
