@@ -42,6 +42,8 @@
                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" id="submit">Submit</button>
                 </div>
             </form>
+            <p>{{ $request }}</p>
+            <p>{{ $response }}</p>
         </div>
     </body>
 </html>
