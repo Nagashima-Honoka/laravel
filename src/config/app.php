@@ -134,7 +134,7 @@ return [
     |
     */
 
-    'providers' => [
+    'providers' => [ // アプリケーションに登録されているプロバイダ一覧
 
         /*
          * Laravel Framework Service Providers...
@@ -174,7 +174,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        App\Providers\HelloServiceProvider::class,
     ],
 
     /*
