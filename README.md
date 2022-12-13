@@ -23,9 +23,13 @@ php artisan make:controller SampleController
 ```
 php artisan make:migration create_テーブル名_table
 ```
-## ServiceProvaidern作成
+## ServiceProvaider作成
 ```
 php artisan make:provider SampleServiceProvider
+```
+## Middleware作成
+```
+php artisan make:middleware SampleMiddleware
 ```
 
 ## Laravel8
