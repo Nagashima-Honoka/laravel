@@ -22,13 +22,10 @@ class HelloServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot() // ブートストラップ処理
+    public function boot()
     {
-        View::composer( // View::composer( ビューの指定, 関数またはクラス )
-            // views内のhelloフォルダ内にあるindex.blade.php
-            'hello.index', function($view) { // Illuminate\Support\Facades名前空間にあるViewクラスのインスタンス
-                $view->with('view_message', 'composer message!'); // $view->with( 変数名, 値 );
-            }
+        View::composer(
+            'hello.index', 'App\Http\Composers\HelloComposer' // 第2引数に呼び出すクラス名をテキスト値で指定する
         );
     }
 }
