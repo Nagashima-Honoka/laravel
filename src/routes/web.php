@@ -41,5 +41,4 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 Route::get('hello', 'HelloController@index');
 Route::post('hello', 'HelloController@post');
 
-Route::get('hello', 'HelloController@index'); // middlewareの呼び出し処理を削除
-// Route::get('hello', 'HelloController@index')->middleware(HelloMiddleware::class);
+Route::get('hello', 'HelloController@index')->middleware('hello'); // /helloにhelloグループが設定される
