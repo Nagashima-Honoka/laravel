@@ -15,13 +15,15 @@ class HelloMiddleware
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-    {
-        $data = [
-            ['name'=>'taro', 'mail'=>'taro@yamada'],
-            ['name'=>'hanako', 'mail'=>'hanako@flower'],
-            ['name'=>'sachiko', 'mail'=>'sachiko@happy'],
-        ];
-        $request->merge(['data'=>$data]); // $request->merge(配列);
-        return $next($request);
+    { // レスポンスから、クライアントに返送されるコンテンツを取り出し、その一部を置換して返送する
+        $response = $next($request); // $nextでコントローラのアクションが実行され、その結果を$responseに代入
+        $content = $response->content(); // $responseのcontentメソッドで、レスポンスに設定されているコンテンツが取得できる。これは、送り返されるHTMLソースコードのテキストが入っている。ここから、<middleware>というタグを正規表現で置換する。
+
+        $pattern = '/<middleware?>(.*)<\/middleware>/i'; // <middleware>○○</middleware>という表現を、
+        $replace = '<a href="http://$1">$1</a>'; // <a href="〜">○○</a>というテキストに
+        $content = preg_replace($pattern, $replace, $content); // 置換する
+
+        $response->setContent($content); // レスポンスにコンテンツを設定
+        return $response;
     }
 }
