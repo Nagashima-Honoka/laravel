@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\HelloMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('hello', function () {
-    return view('hello.index'); // フォルダ名.ファイル名
+    return view('hello.index');
 });
 
 Route::get('/sample', 'SampleController@index'); // sample.blade.php, コントローラー名@アクション名
@@ -40,4 +41,4 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 Route::get('hello', 'HelloController@index');
 Route::post('hello', 'HelloController@post');
 
-
+Route::get('hello', 'HelloController@index')->middleware('hello'); // /helloにhelloグループが設定される

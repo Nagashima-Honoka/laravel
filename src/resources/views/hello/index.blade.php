@@ -1,10 +1,7 @@
-<!-- layoutsフォルダ内のhelloappファイルをロードし、親レイアウトとして継承する -->
 @extends('layouts.helloapp')
 
-<!-- @section('セクション名', 'テキスト・数字など') -->
 @section('title', 'Index')
 
-<!-- section ~ endsection -->
 @section('menubar')
  @parent
  インデックスページ
@@ -12,8 +9,8 @@
 
 @section('content')
  <p>ここが本文のコンテンツです。</p>
- <p>Controller value<br>'message' = {{ $message }}</p>
- <p>ViewComposer value<br>'view_message' = {{ $view_message }}</p>
+ <p>これは、<middleware>google.com</middleware>へのリンクです。</p>
+ <p>これは、<middleware>yahoo.co.jp</middleware>へのリンクです。</p>
 @endsection
 
 @section('footer')
