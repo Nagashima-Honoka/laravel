@@ -6,11 +6,8 @@ use Illuminate\Http\Request;
 
 class HelloController extends Controller
 {
-    // eachによるコレクションビュー
-    // data変数を用意しておく
-    public function index() {
-     return view('hello.index', ['message'=>'Hello!']);
+    public function index(Request $request) {
+        return view('hello.index', ['data'=>$request->data]);
     }
-
 
 }
