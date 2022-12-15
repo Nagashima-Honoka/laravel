@@ -31,6 +31,10 @@ php artisan make:provider SampleServiceProvider
 ```
 php artisan make:middleware SampleMiddleware
 ```
+## FormRequest作成
+```
+php artisan make:request SampleRequest
+```
 
 ## Laravel8
 [https://readouble.com/laravel/8.x/ja/](https://readouble.com/laravel/8.x/ja/)
