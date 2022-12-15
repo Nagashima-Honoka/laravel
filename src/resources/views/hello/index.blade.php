@@ -9,33 +9,44 @@
 
 @section('content')
  <p>{{ $msg }}</p>
- <!-- $errorsという変数は、バリデーションで発生したエラーメッセージをまとめて管理するオブジェクト。バリデーションの機能によって組み込まれる。 -->
  @if(count($errors) > 0)
- <div>
-    <ul>
-<!-- $errors->all()はエラーメッセージを配列にまとめて取り出す -->
-        @foreach($errors->all() as $error)
-         <li>{{ $error }}</li>
-        @endforeach
-    </ul>
- </div>
+    <p>入力に問題があります。再入力してください。</p>
  @endif
  <table>
     <form action="/hello" method="POST">
      {{ csrf_field() }}
+     <!-- ifディレクティブで、$errors->has('項目名')をチェックする。hasはエラーが発生しているかをチェックするメソッド -->
+     @if ($errors->has('name'))
+     <tr>
+        <th>ERROR</th>
+        <!-- $errors->first('項目名')で、指定した項目の最初のエラーメッセージを取得する -->
+        <td>{{ $errors->first('name') }}</td>
+     </tr>
+     @endif
      <tr>
         <th>name:</th>
         <td>
-            <!-- old('値'): 引数に指定した入力項目の古い値（現在の値が設定される前の値）を返す -->
             <input type="text" name="name" value="{{ old('name') }}">
         </td>
      </tr>
+     @if ($errors->has('mail'))
+     <tr>
+        <th>ERROR</th>
+        <td>{{ $errors->first('mail') }}</td>
+     </tr>
+     @endif
      <tr>
         <th>mail:</th>
         <td>
             <input type="text" name="mail" value="{{ old('mail') }}">
         </td>
      </tr>
+     @if ($errors->has('age'))
+     <tr>
+        <th>ERROR</th>
+        <td>{{ $errors->first('age') }}</td>
+     </tr>
+     @endif
      <tr>
         <th>age:</th>
         <td>
