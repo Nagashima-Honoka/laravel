@@ -10,11 +10,11 @@ docker-compose up -d
 
 # appコンテナに入る
 docker-compose exec app bash
+```
 
-# ローカル起動
+## ローカル起動
 [http://localhost:8081](http://localhost:8081)
 
-```
 
 ## Contoroller作成
 ```
