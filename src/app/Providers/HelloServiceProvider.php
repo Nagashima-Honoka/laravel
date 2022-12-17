@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Validators\HelloValidator;
 
 class HelloServiceProvider extends ServiceProvider
 {
@@ -24,8 +26,8 @@ class HelloServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(
-            'hello.index', 'App\Http\Composers\HelloComposer' // 第2引数に呼び出すクラス名をテキスト値で指定する
-        );
+        Validator::extend('hello', function($attribute, $value, $parameters, $validator) { // helloというルール名を追加する
+            return $value % 2 == 0;
+        });
     }
 }
