@@ -15,41 +15,17 @@
  <table>
     <form action="/hello" method="POST">
      <!-- ifディレクティブで、$errors->has('項目名')をチェックする。hasはエラーが発生しているかをチェックするメソッド -->
-     @if ($errors->has('name'))
+     @if ($errors->has('msg'))
      <tr>
         <th>ERROR</th>
         <!-- $errors->first('項目名')で、指定した項目の最初のエラーメッセージを取得する -->
-        <td>{{ $errors->first('name') }}</td>
+        <td>{{ $errors->first('msg') }}</td>
      </tr>
      @endif
      <tr>
-        <th>name:</th>
+        <th>Message:</th>
         <td>
-            <input type="text" name="name" value="{{ old('name') }}">
-        </td>
-     </tr>
-     @if ($errors->has('mail'))
-     <tr>
-        <th>ERROR</th>
-        <td>{{ $errors->first('mail') }}</td>
-     </tr>
-     @endif
-     <tr>
-        <th>mail:</th>
-        <td>
-            <input type="text" name="mail" value="{{ old('mail') }}">
-        </td>
-     </tr>
-     @if ($errors->has('age'))
-     <tr>
-        <th>ERROR</th>
-        <td>{{ $errors->first('age') }}</td>
-     </tr>
-     @endif
-     <tr>
-        <th>age:</th>
-        <td>
-            <input type="text" name="age" value="{{ old('age') }}">
+            <input type="text" name="msg" value="{{ old('msg') }}">
         </td>
      </tr>
      <tr>
