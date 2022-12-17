@@ -14,7 +14,6 @@
  @endif
  <table>
     <form action="/hello" method="POST">
-     {{ csrf_field() }}
      <!-- ifディレクティブで、$errors->has('項目名')をチェックする。hasはエラーが発生しているかをチェックするメソッド -->
      @if ($errors->has('name'))
      <tr>
