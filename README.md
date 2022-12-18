@@ -24,6 +24,10 @@ php artisan make:controller SampleController
 ```
 php artisan make:migration create_テーブル名_table
 ```
+## Seederファイル作成
+```
+php artisan make:seeder SampleTableSeeder
+```
 ## ServiceProvaider作成
 ```
 php artisan make:provider SampleServiceProvider
