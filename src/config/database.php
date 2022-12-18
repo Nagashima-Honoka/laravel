@@ -44,20 +44,20 @@ return [
         ],
 
         'mysql' => [
-            'driver' => 'mysql',
+            'driver' => 'mysql', // ドライバー名
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
-            'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
+            'host' => env('DB_HOST', '127.0.0.1'), // データベースサーバーのホストの指定(IPアドレスまたはドメイン)。必須。
+            'port' => env('DB_PORT', '3306'), // 使用ポートの指定。MySQLの場合は3306がデフォルト。
+            'database' => env('DB_DATABASE', 'forge'), // 使用するデータベース名。必須。
+            'username' => env('DB_USERNAME', 'forge'), // データベースにアクセスする際に使用するユーザー名。必須。
+            'password' => env('DB_PASSWORD', ''), // データベースにアクセスする際に使用するパスワード。必須。
+            'unix_socket' => env('DB_SOCKET', ''), // 使用するソケットファイルを指定する。デフォルトは空になっている。
+            'charset' => 'utf8mb4', // 使用するキャラクターエンコード
             'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
+            'prefix' => '', // データベースのプレフィクス。使用すなければ空でok
             'prefix_indexes' => true,
-            'strict' => true,
-            'engine' => null,
+            'strict' => true, // ストリクトモード（MySQLの設定）
+            'engine' => null, // ストレージエンジン（MySQLの設定）
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
