@@ -36,6 +36,10 @@ php artisan make:middleware SampleMiddleware
 ```
 php artisan make:request SampleRequest
 ```
+## Migrationファイルの生成
+```
+php artisan make:migration create_sample_table
+```
 
 ## Laravel8
 [https://readouble.com/laravel/8.x/ja/](https://readouble.com/laravel/8.x/ja/)
