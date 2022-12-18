@@ -62,8 +62,8 @@ class HelloController extends Controller
     }
 
     public function show(Request $request) {
-        $id = $request->id;
-        $items = DB::table('people')->where('id', '<=', $id)->get(); // idの値が、クエリ文字列として渡されたidパラメータ以下のものを検索する
+        $name = $request->name;
+        $items = DB::table('people')->where('name', 'like', '%' . $name . '%')->orWhere('mail', 'like', '%' . $name . '%')->get(); // nameにlike検索を条件設定、その後mailにもlike検索を設定。where/orWhereがパラメータ結合に対応していないため、変数と記号をつなぎ合わせて検索テキストを用意する。
         return view('hello.show', ['items' => $items]);
     }
 }
