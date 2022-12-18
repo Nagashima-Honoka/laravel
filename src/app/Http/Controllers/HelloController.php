@@ -60,4 +60,10 @@ class HelloController extends Controller
         DB::delete('delete from people where id = :id', $param); // whereを使い、指定したIDのレコードをdelete fromで削除する
         return redirect('/hello');
     }
+
+    public function show(Request $request) {
+        $id = $request->id;
+        $item = DB::table('people')->where('id', $id)->first(); // whereとfirstを組み合わせて、指定したIDのレコードを1つだけ取り出し、$itemに渡す
+        return view('hello.show', ['item' => $item]);
+    }
 }
