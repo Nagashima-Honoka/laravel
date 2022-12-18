@@ -48,14 +48,12 @@ class HelloController extends Controller
     }
 
     public function del(Request $request) {
-        $param = ['id' => $request->id];
-        $item = DB::select('select * from people where id = :id', $param); // クエリ文字で渡されたIDパラメータの値を使ってレコードを取得、それをformに設定して表示する
-        return view('hello.del', ['form' => $item[0]]);
+        $item = DB::table('people')->where('id', $request->id)->first();
+        return view('hello.del', ['form' => $item]);
     }
 
     public function remove(Request $request) {
-        $param = ['id' => $request->id];
-        DB::delete('delete from people where id = :id', $param); // whereを使い、指定したIDのレコードをdelete fromで削除する
+        DB::table('people')->where('id', $request->id)->delete();
         return redirect('/hello');
     }
 
