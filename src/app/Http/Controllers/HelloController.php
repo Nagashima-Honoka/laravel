@@ -23,12 +23,12 @@ class HelloController extends Controller
     }
 
     public function create(Request $request) { // 送信されたフォームの内容を元にレコードの作成を行う
-        $param = [ // 送信フォームの値を保管
-            'name' => $request->name,
+        $param = [ // 送信されたフォーム値をもとに、$param変数を用意する
+            'name' => $request->name, // 配列になっており、それぞれのフィールド名をキーとして値をまとめてある
             'mail' => $request->mail,
             'age' => $request->age,
         ];
-        DB::insert('insert into people (name, mail, age) values(:name, :mail, :age)', $param); // $parmの配列をパラメータ引数のして、DB::insertを呼び出す
+        DB::table('people')->insert($param); // 配列$paramを引数に指定してinsertメソッドを呼び出す
         return redirect('/hello');
     }
 
