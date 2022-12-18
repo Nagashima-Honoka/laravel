@@ -31,4 +31,21 @@ class HelloController extends Controller
         DB::insert('insert into people (name, mail, age) values(:name, :mail, :age)', $param); // $parmの配列をパラメータ引数のして、DB::insertを呼び出す
         return redirect('/hello');
     }
+
+    public function edit(Request $request) {
+        $param = ['id' => $request->id];
+        $item = DB::select('select * from people where id = :id', $param); // 受け取ったIDのレコードをDB::selectで検索し、それをformという名前でテンプレートに渡す
+        return view('hello.edit', ['form' => $item[0]]);
+    }
+
+    public function update(Request $request) {
+        $param = [
+            'id' => $request->id,
+            'name' => $request->name,
+            'mail' => $request->mail,
+            'age' => $request->age,
+        ];
+        DB::update('update people set name=:name, mail=:mail, age=:age where id=:id', $param); // whereで設定するレコードの条件を指定することで、指定したIDのレコードの値が更新できる
+        return redirect('/hello');
+    }
 }
