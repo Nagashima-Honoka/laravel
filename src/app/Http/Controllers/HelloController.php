@@ -33,19 +33,17 @@ class HelloController extends Controller
     }
 
     public function edit(Request $request) {
-        $param = ['id' => $request->id];
-        $item = DB::select('select * from people where id = :id', $param); // 受け取ったIDのレコードをDB::selectで検索し、それをformという名前でテンプレートに渡す
-        return view('hello.edit', ['form' => $item[0]]);
+        $item = DB::table('people')->where('id', $request->id)->first();
+        return view('hello.edit', ['form' => $item]);
     }
 
     public function update(Request $request) {
         $param = [
-            'id' => $request->id,
             'name' => $request->name,
             'mail' => $request->mail,
             'age' => $request->age,
         ];
-        DB::update('update people set name=:name, mail=:mail, age=:age where id=:id', $param); // whereで設定するレコードの条件を指定することで、指定したIDのレコードの値が更新できる
+        DB::table('people')->where('id', $request->id)->update($param); // peopleテーブルのビルダを取得し、whereで送信されたID番号のレコード指定。さらに、updateメソッドを呼び出し、引数にフォームから送られた値を配列にまとめて指定する。これで指定のレコードが書き換えられる。
         return redirect('/hello');
     }
 
