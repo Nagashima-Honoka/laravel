@@ -62,8 +62,9 @@ class HelloController extends Controller
     }
 
     public function show(Request $request) {
-        $name = $request->name;
-        $items = DB::table('people')->where('name', 'like', '%' . $name . '%')->orWhere('mail', 'like', '%' . $name . '%')->get(); // nameにlike検索を条件設定、その後mailにもlike検索を設定。where/orWhereがパラメータ結合に対応していないため、変数と記号をつなぎ合わせて検索テキストを用意する。
+        $min = $request->min;
+        $max = $request->max;
+        $items = DB::table('people')->whereRaw('age >= ? and age <= ?', [$min, $max])->get();
         return view('hello.show', ['items' => $items]);
     }
 }
