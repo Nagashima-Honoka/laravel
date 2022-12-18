@@ -63,7 +63,7 @@ class HelloController extends Controller
 
     public function show(Request $request) {
         $id = $request->id;
-        $item = DB::table('people')->where('id', $id)->first(); // whereとfirstを組み合わせて、指定したIDのレコードを1つだけ取り出し、$itemに渡す
-        return view('hello.show', ['item' => $item]);
+        $items = DB::table('people')->where('id', '<=', $id)->get(); // idの値が、クエリ文字列として渡されたidパラメータ以下のものを検索する
+        return view('hello.show', ['items' => $items]);
     }
 }
