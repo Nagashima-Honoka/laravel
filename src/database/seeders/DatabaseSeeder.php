@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        $this->call(PeopleTableSeeder::class); // call(): Seederクラスにあるメソッド。これにより指定したクラスのrunメソッドが呼び出され、シーディング処理が実行されるようになる
     }
 }
