@@ -48,4 +48,16 @@ class HelloController extends Controller
         DB::update('update people set name=:name, mail=:mail, age=:age where id=:id', $param); // whereで設定するレコードの条件を指定することで、指定したIDのレコードの値が更新できる
         return redirect('/hello');
     }
+
+    public function del(Request $request) {
+        $param = ['id' => $request->id];
+        $item = DB::select('select * from people where id = :id', $param); // クエリ文字で渡されたIDパラメータの値を使ってレコードを取得、それをformに設定して表示する
+        return view('hello.del', ['form' => $item[0]]);
+    }
+
+    public function remove(Request $request) {
+        $param = ['id' => $request->id];
+        DB::delete('delete from people where id = :id', $param); // whereを使い、指定したIDのレコードをdelete fromで削除する
+        return redirect('/hello');
+    }
 }
