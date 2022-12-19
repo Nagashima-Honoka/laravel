@@ -40,6 +40,10 @@ php artisan make:middleware SampleMiddleware
 ```
 php artisan make:request SampleRequest
 ```
+## Model作成
+```
+php artisan make:model モデル名
+```
 
 ## Laravel8
 [https://readouble.com/laravel/8.x/ja/](https://readouble.com/laravel/8.x/ja/)
