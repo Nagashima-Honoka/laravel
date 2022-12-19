@@ -17,9 +17,9 @@ class PersonController extends Controller
     }
 
     public function search(Request $request) { // POST送信された時の処理
-        $item = Person::find($request->input); // IDによる検索。$itemには、検索されたPersonインスタンスが代入される。もし見つからなかった場合、$itemはnullのまま。
+        $item = Person::where('name', $request->input)->first();
         $param = ['input' => $request->input, 'item' => $item];
-        return view('person.find', $param); // inputフィールドの値を引数にしてfindメソッドを呼び出す
+        return view('person.find', $param);
     }
 
 }
