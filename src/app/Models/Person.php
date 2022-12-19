@@ -17,4 +17,12 @@ class Person extends Model
         return $query->where('name', $str);
     }
 
+    public function scopeAgeGreaterThan($query, $n) { // ageの値が引数の値と等しいかもっと大きいものに絞り込む
+        return $query->where('age', '>=', $n);
+    }
+
+    public function scopeAgeLessThan($query, $n) { // ageの値が等しいかもっと小さいものに絞り込む
+        return $query->where('age', '<=', $n);
+    }
+
 }

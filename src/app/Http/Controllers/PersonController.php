@@ -17,7 +17,9 @@ class PersonController extends Controller
     }
 
     public function search(Request $request) { // POST送信された時の処理
-        $item = Person::nameEqual($request->input)->first(); // レコード用メソッドを呼び出す場合は、メソッド名のscopeは不要。nameEqual(名前)というように呼び出せばnameが指定した名前に絞り込んだビルダが得られる。
+        $min = $request->input * 1;
+        $max = $min + 10;
+        $item = Person::ageGreaterThan($min)->ageLessThan($max)->first(); // ageGreaterThan = ○○以上, ageLessThan = ○○以下
         $param = ['input' => $request->input, 'item' => $item];
         return view('person.find', $param);
     }
