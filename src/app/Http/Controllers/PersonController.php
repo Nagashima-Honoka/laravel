@@ -36,13 +36,24 @@ class PersonController extends Controller
         unset($form['_token']); // フォームに追加される表示フィールドの_tokenだけはunsetで削除しておく。_tokenという値はCSRF用非表示フィールドとして用意される値。これ自身は、テーブルにはないフィールドのため、あらかじめ削除いておく。
         $person->timestamps = false; // 「updated_atカラム」が無いとエラーが出たためタイムスタンプを無効にする
         $person->fill($form)->save(); // 4. インスタンスに値を設定して保存。fill()は、引数に用意されている配列の値をモデルのプロパティに代入するもの。フォームのようにまとまった値がある場合は、fill()を使うことで、個々のプロパティをまとめて設定できる。値が設定されたら、save()を呼び出してインスタンスを保存する。
-        // 1つ1つの値をインスタンスに設定していっても同じ
-        // $person = new Person;
-        // $person->name = $request->name;
-        // $person->mail = $request->mail;
-        // $person->age = $request->age;
-        // $person->save();
         return redirect('/person');
     }
+
+    public function edit(Request $request) {
+        $person = Person::find($request->id); // Person::findを使ってidパラメータの値を取得
+        return view('person.edit', ['form' => $person]); // formという値に設定
+    }
+
+    public function update(Request $request) {
+        $this->validate($request, Person::$rules); // 1. バリデーションの実行
+        $person = Person::find($request->id); // 2. Person::findでインスタンスを用意する。バリデーションを通過したらモデルの保存作業を行う。
+        $form = $request->all(); // 3. 値を用意する
+        unset($form['_token']); // フォームに追加される表示フィールドの_tokenだけはunsetで削除しておく。_tokenという値はCSRF用非表示フィールドとして用意される値。これ自身は、テーブルにはないフィールドのため、あらかじめ削除いておく。
+        $person->timestamps = false; // 「updated_atカラム」が無いとエラーが出たためタイムスタンプを無効にする
+        $person->fill($form)->save(); // 4. fill()で送信されたフォームの内容を反映し、save()を呼び出してモデルを更新する。
+        return redirect('/person');
+    }
+
+
 
 }
