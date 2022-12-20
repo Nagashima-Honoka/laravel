@@ -48,5 +48,9 @@ class Person extends Model
        'age' => 'integer|min:0|max:150',
     );
 
+    public function boards() { // メソッド名は、複数のレコードと関連づけられるので複数形の命名
+        return $this->hasMany('App\Models\Board'); // hasManyの返り値をそのままreturnする。これで、Person内のboardsプロパティで、関連する複数のBoardインスタンスが取り出せるようになる。
+    }
+
 
 }
