@@ -48,8 +48,8 @@ class Person extends Model
        'age' => 'integer|min:0|max:150',
     );
 
-    public function board() { // メソッド名は、リレーションで関連付けるモデル名（1対1で1つしか取り出されないので単数形の命名）
-        return $this->hasOne('App\Models\Board'); // hasOne(関連づけられるモデル)。hasOneの返り値をそのままreturnする。
+    public function boards() { // メソッド名は、複数のレコードと関連づけられるので複数形の命名
+        return $this->hasMany('App\Models\Board'); // hasManyの返り値をそのままreturnする。これで、Person内のboardsプロパティで、関連する複数のBoardインスタンスが取り出せるようになる。
     }
 
 

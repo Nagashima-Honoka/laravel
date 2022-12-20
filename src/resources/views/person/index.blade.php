@@ -17,12 +17,16 @@
     <tr>
         <td>{{ $item->getData() }}</td>
         <td>
-            @if($item->board != null)
-             {{ $item->board->getData() }}
-             <!-- Personモデルにboardメソッドを追加した
-             メソッドだから、本来は$item->board()となるはず
-             リレーションの設定を行った場合、このように$this->boardというプロパティとして扱えるようになる
-             このboardプロパティには、関連づけられたBoardモデルのインスタンスが入っている。そこから必要な情報を取り出して利用できる -->
+            @if($item->boards != null)
+            <!-- $item->boardsがnullでなければ繰り返し処理を行う -->
+            <table width="100%">
+            <!-- $item->boardsから順に値を$objに取り出し、そこからgetData()の内容を出力する。こうすることで、boardsに関連付けられた全てのレコードの値を表示する -->
+                @foreach($item->boards as $obj)
+                 <tr>
+                    <td>{{ $obj->getData() }}</td>
+                 </tr>
+                @endforeach
+            </table>
             @endif
         </td>
     </tr>
