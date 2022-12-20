@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+
 
 class Person extends Model
 { // 1つ1つのレコードは全てPersonクラスのインスタンスとしてまとめられている
@@ -23,6 +25,14 @@ class Person extends Model
 
     public function scopeAgeLessThan($query, $n) { // ageの値が等しいかもっと小さいものに絞り込む
         return $query->where('age', '<=', $n);
+    }
+
+    protected static function boot() { // PersonController.phpのindexアクションでPerson::all()しているがageの値が30未満のものは全て表示されない
+        parent::boot();
+
+        static::addGlobalScope('age', function(Builder $builder) {
+            $builder->where('age', '>', 30); // 引数で渡されたBuilderでwhereを呼び出し、ageが30以上のものを呼び出している
+        });
     }
 
 }
