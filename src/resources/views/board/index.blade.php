@@ -10,11 +10,14 @@
 @section('content')
  <table>
     <tr>
-        <th>Data</th>
+        <th>Message</th>
+        <th>Name</th>
     </tr>
     @foreach($items as $item)
+    <!-- 取得したBoardのmessageと、そのperson内にあるnameを一覧表示する -->
     <tr>
-        <td>{{ $item->getData() }}</td>
+        <td>{{ $item->message }}</td>
+        <td>{{ $item->person->name }}</td>
     </tr>
     @endforeach
  </table>
