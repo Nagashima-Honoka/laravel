@@ -54,6 +54,13 @@ class PersonController extends Controller
         return redirect('/person');
     }
 
+    public function delete(Request $request) {
+        $person = Person::find($request->id);
+        return view('person.del', ['form' => $person]); // Person::findで検索した値をそのままformという変数に設定してテンプレートに渡す
+    }
 
-
+    public function remove(Request $request) {
+        Person::find($request->id)->delete(); // 2. Person::findで指定のIDのモデルを検索し、モデルのdeleteメソッドを呼び出して削除する。
+        return redirect('/person');
+    }
 }
