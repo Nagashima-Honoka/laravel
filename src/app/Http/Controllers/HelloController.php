@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\HelloRequest;
 use Illuminate\Support\Facades\DB;
+use App\Models\Person;
 
 class HelloController extends Controller
 {
     public function index(Request $request) {
-        $items = DB::table('people')->orderBy('age', 'asc')->get(); // whereなどの検索条件のメソッド, orderBy(), get()の順
+        $items = DB::table('people')->simplePaginate(5);
         return view('hello.index', ['items'=> $items]);
     }
 
