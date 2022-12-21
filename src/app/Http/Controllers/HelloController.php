@@ -66,4 +66,16 @@ class HelloController extends Controller
     public function rest(Request $request) {
         return view('hello.rest');
     }
+
+    public function ses_get(Request $request) { // /hello/sessionにアクセスした時の処理
+        $sesdata = $request->session()->get('msg'); // セッションからmsgという値を取り出している
+        return view('hello.session', ['session_data' => $sesdata]); // 取り出した値をsession_dataという名前でテンプレートに渡す
+    }
+
+    public function ses_put(Request $request) { // /hello/sessionにformをPOST送信した時の処理
+        $msg = $request->input; // $request->inputの値を取り出す
+        $request = session()->put('msg', $msg); // 取り出した値をmsgという名前でセッションに保管する
+        return redirect('hello/session');
+    }
+
 }
