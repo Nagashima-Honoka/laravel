@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\HelloRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\Person;
+use Illuminate\Support\Facades\Auth;
 
 class HelloController extends Controller
 {
@@ -13,10 +14,10 @@ class HelloController extends Controller
         // $sql = Person::where('id' , 1)
         // ->toSql();
         // var_dump($sql);
-
+        $user = Auth::user(); // ログインしているユーザーのモデルインスタンス(Authでは、Userというモデルクラスが用意されている)を返す。ログインしていなければnull
         $sort = $request->sort;
-        $items = Person::orderBy($sort, 'asc')->paginate(5);
-        $param = ['items'=> $items, 'sort'=> $sort];
+        $items = Person::orderBy($sort, 'asc')->simplePaginate(5);
+        $param = ['items'=> $items, 'sort'=> $sort, 'user' => $user];
         return view('hello.index', $param);
     }
 
