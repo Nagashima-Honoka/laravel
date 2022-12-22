@@ -30,7 +30,7 @@
         </tr>
         @endforeach
  </table>
- {{ $items->append(['sort' => $sort])->links() }}
+ {{ $items->appends(['sort' => $sort])->links() }}
  @if(Auth::check())
  <!-- Auth::check()は、現在アクセスしているユーザーがログインしているかどうかを確認する。ログインしていればtrue, していなければfalse -->
   <p>USER: {{ $user->name . ' (' . $user->email . ')' }}</p>
