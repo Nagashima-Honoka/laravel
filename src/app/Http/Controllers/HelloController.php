@@ -6,13 +6,18 @@ use Illuminate\Http\Request;
 use App\Http\Requests\HelloRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\Person;
+use Illuminate\Support\Facades\Auth;
 
 class HelloController extends Controller
 {
     public function index(Request $request) {
+        // $sql = Person::where('id' , 1)
+        // ->toSql();
+        // var_dump($sql);
+        $user = Auth::user(); // ログインしているユーザーのモデルインスタンス(Authでは、Userというモデルクラスが用意されている)を返す。ログインしていなければnull
         $sort = $request->sort;
-        $items = Person::orderBy($sort, 'asc')->paginate(5);
-        $param = ['items'=> $items, 'sort'=> $sort];
+        $items = Person::orderBy($sort, 'asc')->simplePaginate(5);
+        $param = ['items'=> $items, 'sort'=> $sort, 'user' => $user];
         return view('hello.index', $param);
     }
 
@@ -79,6 +84,22 @@ class HelloController extends Controller
         $msg = $request->input; // $request->inputの値を取り出す
         $request = session()->put('msg', $msg); // 取り出した値をmsgという名前でセッションに保管する
         return redirect('hello/session');
+    }
+
+    public function getAuth(Request $request) {
+        $param = ['message' => 'ログインしてください。'];
+        return view('hello.auth', $param);
+    }
+
+    public function postAuth(Request $request) {
+        $email = $request->email;
+        $password = $request->password;
+        if (Auth::attempt(['email' => $email, 'password' => $password])) { // 送信されたフォームの値でログインの処理を行う
+            $msg = 'ログインしました。（' . Auth::user()->name . ')';
+        } else {
+            $msg = 'ログインに失敗しました。';
+        }
+        return view('hello.auth', ['message' => $msg]);
     }
 
 }

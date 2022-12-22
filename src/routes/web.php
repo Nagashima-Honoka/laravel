@@ -41,7 +41,8 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 Route::get('hello', 'HelloController@index');
 Route::post('hello', 'HelloController@post');
 
-Route::get('hello', 'HelloController@index')->middleware('hello'); // /helloにhelloグループが設定される
+// Route::get('hello', 'HelloController@index')->middleware('hello'); // /helloにhelloグループが設定される
+Route::get('hello', 'HelloController@index')->middleware('auth'); // /helloアクションはログインが必須になる。ログインしないでアクセスすると、ログインページにリダイレクトされる・
 Route::get('hello/add', 'HelloController@add');
 Route::post('hello/add', 'HelloController@create');
 Route::get('hello/edit', 'HelloController@edit');

@@ -31,10 +31,11 @@
         @endforeach
  </table>
  {{ $items->append(['sort' => $sort])->links() }}
- <!-- append()メソッドは、生成するリンクにパラメータを追加する
- 引数の、['sort' => $sort]でsort=○○といったパラメータが追加された形でリンク先が設定されるようになる
- つまり、aタグのhrefに設定されるアドレスは、/hello?sort=○○&page=○○といったパラメータが追加された形でリンク先が設定されるようになる
- これにより、表示するページ番号とソートするフィールド名をクエリー文字列でサーバーに送ることができる -->
+ @if(Auth::check())
+ <!-- Auth::check()は、現在アクセスしているユーザーがログインしているかどうかを確認する。ログインしていればtrue, していなければfalse -->
+  <p>USER: {{ $user->name . ' (' . $user->email . ')' }}</p>
+  <p>※ログインしていません。(<a href="/login">ログイン</a> | <a href="/register">登録</a>)</p>
+ @endif
 @endsection
 
 @section('footer')
