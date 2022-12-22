@@ -16,6 +16,13 @@ class HelloController extends Controller
         // var_dump($sql);
         $user = Auth::user(); // ログインしているユーザーのモデルインスタンス(Authでは、Userというモデルクラスが用意されている)を返す。ログインしていなければnull
         $sort = $request->sort;
+        // $sort = $request->sort; は、if文より上に記述する。下にかくと以下のようなエラーが出る
+        // SQLSTATE[42S22]: Column not found: 1054 Unknown column '' in 'order clause' (SQL: select * from `people` where `age` > 30 order by `` asc limit 6 offset 0)
+        if(!$request->sort) {
+            $sort = 'id';
+        } else {
+            $sort = $request->sort;
+        }
         $items = Person::orderBy($sort, 'asc')->simplePaginate(5);
         $param = ['items'=> $items, 'sort'=> $sort, 'user' => $user];
         return view('hello.index', $param);
