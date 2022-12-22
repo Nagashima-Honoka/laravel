@@ -10,6 +10,10 @@ use App\Models\Person;
 class HelloController extends Controller
 {
     public function index(Request $request) {
+        // $sql = Person::where('id' , 1)
+        // ->toSql();
+        // var_dump($sql);
+
         $sort = $request->sort;
         $items = Person::orderBy($sort, 'asc')->paginate(5);
         $param = ['items'=> $items, 'sort'=> $sort];
