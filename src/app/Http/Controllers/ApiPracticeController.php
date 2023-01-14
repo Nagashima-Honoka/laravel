@@ -7,6 +7,8 @@ use GuzzleHttp\Client;
 
 class ApiPracticeController extends Controller
 {
+    // API呼び出し（GET編）
+    // https://yaba-blog.com/laravel-call-api/
     public function index()
     {
         $tag_id = "laravel";
@@ -21,6 +23,6 @@ class ApiPracticeController extends Controller
         $posts = $response->getBody();
         $posts = json_decode($posts, true);
 
-        return view('/api', ['posts' => $posts]);
+        return view('api-practice.index', ['posts' => $posts]);
     }
 }
