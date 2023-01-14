@@ -69,3 +69,6 @@ Route::get('board/add', 'BoardController@add');
 Route::post('board/add', 'BoardController@create');
 
 Route::resource('rest', 'RestappController'); // /rest下にCRUD関係のアクセスがまとめて登録される
+
+Route::get('/api', 'ApiPracticeController@index');
+
